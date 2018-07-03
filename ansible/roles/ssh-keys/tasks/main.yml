@@ -1,0 +1,8 @@
+- name: Set up ssh keys for ec2-user
+  authorized_key:
+    user: ec2-user
+    state: present
+    key: "{{ item }}"
+  with_file:
+        - user.pub
+       

@@ -1,0 +1,24 @@
+- hosts: all
+  user: root
+  vars:
+    admin_group: 'admin'
+    users:
+      132.168.50.105:
+        - {name: eloy, state: present}
+  tasks:
+    - name: Add admin group
+      group: name={{admin_group}} state=present
+
+    - name: Check users state
+      user: name="{{item.name}}" state="{{item.state}}" group="{{admin_group}}"
+      with_items: users[ansible_eth1.ipv4.address]
+
+    - name: Add Pub key
+      authorized_key: user="{{item.name}}"
+                      key="{{ lookup('file', 'public_keys/'+item.name+'.pub') }}"
+                      state="{{item.state}}"
+      with_items: users[ansible_eth1.ipv4.address]
+      when: item.state == "present"
+
+    - name: Add admin group to sudo
+      lineinfile: "dest=/etc/sudoers regexp='^%{{admin_group}}} ALL' line='%{{admin_group}} ALL=(ALL) NOPASSWD: ALL' state=present"
