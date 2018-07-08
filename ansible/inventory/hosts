@@ -1,0 +1,2 @@
+10.0.15.21 ansible_user=ec2-user
+10.0.15.22 ansible_user=ec2-user
