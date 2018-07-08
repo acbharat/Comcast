@@ -3,7 +3,7 @@
   vars:
     admin_group: 'admin'
     users:
-      132.168.50.105:
+      132.168.00.000:
         - {name: eloy, state: present}
   tasks:
     - name: Add admin group
