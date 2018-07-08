@@ -15,7 +15,7 @@ Cluster of Ubuntu Servers
 
 Root privileges
 
-**Steps executed to achieve this tasks**
+**Steps executed to achieve this task**
 
 Setup Ansible Control Machine
 
@@ -30,61 +30,32 @@ Deploy Server Using Playbook
 
 **Configure and setup Ansible Control Machine**
 
-For this task using,Ubuntu servers as Ansible 'Control machine' and Ansible hosts. 
+Configuring Ubuntu servers as Ansible 'Control machine' and Ansible hosts. 
 
-Set up the 'control machine',
+Set up the 'control machine'
+
 After the installation is complete, we will add a new system user.
 
-We will add a new user named 'provision' in order to perform server provisioning using Ansible.
-
-Add new user 'provision' and give the user a password.
-
-`useradd -m -s /bin/bash provision
-passwd provision`
-
-Now add the 'provision' user for sudo without the password by creating new configuration file under the '/etc/sudoers.d/' using the command below.
-
-`echo  -e 'provision\tALL=(ALL)\tNOPASSWD:\tALL' > /etc/sudoers.d/provision`
-
-A new user has been created, and now it can use sudo without a password.
-
-**Now Define User and SSH Key**
-
-In this step, we will define the user for ansible hosts. This user will be automatically created by ansible, so we just need to define the username, password, and the ssh public key.
-
-For each server ('ansi01' and 'ansi02'), we will create a new user named 'provision' with password 'secret01'. And we need to encrypt the 'secret01' password using the mkpasswd command.
-
-Encrypt the 'secret01' password using the command below.
-
-`mkpasswd --method=SHA-512
-TYPE THE PASSWORD 'secret01'`
-
-Note:
-
-Make sure the 'whois' package is installed on the system, or you can install using the following command.
-
-`sudo apt install whois -y
-`
-And you will get the SHA-512 encrypted password.
+We will add a new user named 'ec2-user' in order to perform server provisioning using Ansible.
 
 Define User and SSH Key
 
 Next, we will generate a new ssh-key.
 
-Login to the 'provision' user and generate the ssh key using the ssh-keygen command.
+Login to the 'ec2-user' user and generate the ssh key using the ssh-keygen command.
 
-`su - provision
+`su - ec2-user
 ssh-keygen -t rsa`
 
-Now the user and password have been defined, and the ssh key has been created located at the '.ssh' directory).
+Now the user and password have been defined, and the ssh key has been created located at the '.ssh' directory.
 
 **Create New Inventory**
 
 In this step, we will define the inventory files for all server hosts.
 
-Login as the 'provision' user and create a new directory for the project.
+Login as the 'ec2-user' user and create a new directory for the project.
 
-`su - provision
+`su - ec2-user
 mkdir -p ansible01/`
 
 Go to the 'ansible01' directory and create a new inventory file 'inventory.ini' using vim.
@@ -110,7 +81,7 @@ Paste the following configuration there.
 
 `[defaults]
 `
-`inventory = /home/provision/ansible01/inventory.ini
+`inventory = /home/ec2-user/ansible01/inventory.ini
 `
 Save and exit.
 
@@ -145,9 +116,9 @@ We create a handler to restart the ssh service.
 
 **Run the Playbook**
 
-Login to the 'provision' user and go to the 'ansible01' directory.
+Login to the 'ec2-user' user and go to the 'ansible01' directory.
 
-`su - provision`
+`su - ec2-uesr`
 
 `cd ansible01/`
 
