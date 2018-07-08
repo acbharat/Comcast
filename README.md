@@ -104,16 +104,6 @@ Next, create the ansible playbook named 'deploy-ssh.yml' using vim.
 `
 Save and exit.
 
-On the playbook script:
-
-we create the 'deploy-ssh.yml' playbook script to be applied on all servers defined in the 'inventory.ini' file.
-we create the ansible variable 'provision_password', containing the encrypted password for the new user.
-Set the Ansible facts to 'no'.
-Define the 'root' user as a remote user to perform tasks automation.
-We create new tasks for adding a new user, add the user to the sudoers, and upload the ssh key.
-We create new tasks for configuring the ssh services, disabling the root login, and disable password authentication. Tasks for configuring the ssh will trigger the 'restart ssh' handlers.
-We create a handler to restart the ssh service.
-
 **Run the Playbook**
 
 Login to the 'ec2-user' user and go to the 'ansible01' directory.
