@@ -5,7 +5,7 @@ Task is to create an Ansible PlayBook that will add users to cluster of servers 
 
 **Prerequisites**
 
-Cluster of Linux Servers
+Cluster of Ubuntu Servers
 
 10.0.15.10      control-machine
 
@@ -28,10 +28,9 @@ Create Ansible Playbook
 Deploy Server Using Playbook
 
 
-
 **Configure and setup Ansible Control Machine**
 
-For this task using,Linux servers as Ansible 'Control machine' and Ansible hosts. 
+For this task using,Ubuntu servers as Ansible 'Control machine' and Ansible hosts. 
 
 Set up the 'control machine',
 After the installation is complete, we will add a new system user.
