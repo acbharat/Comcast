@@ -1,4 +1,4 @@
-# Comcast (Setup and Install SSH Key Auth. using Ansible on cluster of servers
+# MockPrj (Setup and Install SSH Key Auth. using Ansible on cluster of servers
 
 
 Task is to create an Ansible PlayBook that will add users to cluster of servers and add their public SSH key allowing them to login securely.
